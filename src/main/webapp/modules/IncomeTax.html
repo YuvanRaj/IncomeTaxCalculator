@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html ng-app="MyFirstApp"
+	ng-controller="myFirstAppController as invoice">
+
+<head>
+<style type="text/css">
+.form {
+	margin: 0 auto;
+	width: 210px;
+}
+
+.form label {
+	display: inline-block;
+	text-align: left;
+	float: left;
+}
+
+.form input {
+	display: inline-block;
+	text-align: right;
+	float: right;
+}
+
+table {
+	border-collapse: collapse;
+	width: 40%;
+}
+
+th {
+	background-color: green;
+	Color: white;
+}
+
+th, td {
+	width: 700px;
+	text-align: left;
+	border: 1px solid black;
+	padding: 5px
+}
+
+.tdcheck {
+	border-right: hidden;
+}
+
+.gfg {
+	border-collapse: separate;
+	border-spacing: 0 15px;
+}
+
+h1 {
+	color: green;
+	text-align: center;
+}
+</style>
+
+<style>
+.gridStyle {
+	border: 1px solid rgb(212, 212, 212);
+	width: 820px;
+	height: 400px
+}
+</style>
+<link rel="stylesheet" type="text/css" href="ng-grid.css" />
+<!-- <link rel="stylesheet" type="text/css" href="/modules/style.css" />
+ -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+ -->
+
+<link href="js/c3.min.css" rel="stylesheet" type="text/css" />
+<script src="js/d3.min.js" charset="utf-8"></script>
+<script src="js/c3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+<script src="js/c3-angular.min.js"></script>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<meta charset="ISO-8859-1">
+<title>Income Tax Calculator</title>
+</head>
+
+<body bgcolor="#FFE4B5">
+	<script src="app.js"></script>
+	<script src="ng-grid.js"></script>
+	<!-- Currency -->
+	<script src="currency/controllers/IncomeTaxCalcController.js"></script>
+	<h1 align="center">INCOME TAX CALCULATOR</h1> 
+	<div>
+		<table align="left">
+		  <form name="myForm">
+			<div>
+				<tr>
+					<td><span><b>Total Fixed Amount:</b></span> <input
+						type="number"  ng-model="requestParam.totalFixedAmt" ng-change="change()"
+						required>
+						<br><span style="color:red"><b>{{fixedNegativeMsg}}</b></span></td>						
+				</tr>
+				
+				<tr>
+					<td><span><b>Basic:</b></span> <input type="number"
+						 ng-model="requestParam.basic" ng-change="change()" required>
+						<br><span style="color:red"><b>{{basicNegativeMsg}}</b></span>						
+						<br><span style="color:red"><b>{{basicFixedErrorMsg}}</b></span>
+						</td>
+				</tr>						
+				
+				<tr>
+					<td><span><b>HRA:</b></span> <input type="number"
+						 ng-model="requestParam.hra" ng-change="change()" required>
+						<br><span style="color:red"><b>{{hraNegativeMsg}}</b></span>
+						<br><span style="color:red"><b>{{hraMaxErrorMsg}}</b></span>
+						<br><span style="color:red"><b>{{hraFixedErrorMsg}}</b></span>
+						</td>
+				</tr>
+				<tr>
+					<td><span><b>Home Loan Interest:</b></span> <input type="number"
+						 ng-model="requestParam.interestRate" ng-change="change()" required><span >(Max value Permitted is 200000)</span>
+						<br><span style="color:red"><b>{{interestNegativeMsg}}</b></span>
+						<br><span style="color:red"><b>{{interestMaxErrorMsg}}</b></span>
+						<br><span style="color:red"><b>{{interestFixedErrorMsg}}</b></span></td>
+				</tr>
+				<tr>
+					<td><span><b>80'c:</b></span> <input type="number"
+						 ng-model="requestParam.c80"  ng-change="change()" required><span >(Max value Permitted is 150000)</span>
+						<br><span style="color:red"><b>{{c80NegativeMsg}}</b></span>
+						<br><span style="color:red"><b>{{c80MaxErrorMsg}}</b></span>
+						<br><span style="color:red"><b>{{c80FixedErrorMsg}}</b></span></td>						
+				</tr>
+				<tr>
+					<td><span><b>80'D:</b></span> <input type="number"
+						 ng-model="requestParam.d80" ng-change="change()" required>
+						<br><span style="color:red"><b>{{d80NegativeMsg}}</b></span>
+						<br><span style="color:red"><b>{{d80MaxErrorMsg}}</b></span>
+						<br><span style="color:red"><b>{{d80FixedErrorMsg}}</b></span>
+						</td>
+				</tr>
+				<tr>
+					<td><span><b>Education Loan:</b></span> <input type="number"
+						 ng-model="requestParam.educationLoan" ng-change="change()" required>
+						<br><span style="color:red"><b>{{eduNegativeMsg}}</b></span>
+						<br><span style="color:red"><b>{{eduMaxErrorMsg}}</b></span>
+						<br><span style="color:red"><b>{{eduFixedErrorMsg}}</b></span>
+						</td>
+				</tr>
+				<tr>
+					<td><span><b>NPS:</b></span> <input type="number"
+						 ng-model="requestParam.nps" ng-change="change()" required><span>(Max value Permitted is 50000)</span>
+						<br><span style="color:red"><b>{{npsNegativeMsg}}</b></span>
+						<br><span style="color:red"><b>{{npsMaxErrorMsg}}</b></span>
+						<br><span style="color:red"><b>{{npsFixedErrorMsg}}</b></span></td>
+				</tr>
+			</div>
+			</form>
+		</table>
+	</div>
+	<br>
+	<br>
+		<div align="center">
+			<table>
+				<tr>
+				    <th>Tax Information</th>
+				    <th>Amount</th>
+				</tr>
+				<tr>
+					<td>Net Taxable Income</td>
+					<td>{{netTaxableIncome}}</td>					
+				</tr>
+				<tr>
+					<td>Total Tax Per Year</td>
+					<td>{{taxPerYear}}</td>					
+				</tr>
+				<tr>
+					<td>Total Tax Per Month</td>
+					<td>{{taxPerMonth}}</td>					
+				</tr>				
+				</table>
+			</div>
+	<br>
+	<br>
+	<div align="center">
+			<table>
+				<tr>
+				    <th>Tax Category</th>
+				    <th>Declaration Msg</th>
+				</tr>
+				<tr>
+					<td>HRA</td>
+					<td>{{hraIntellengceMsg}}</td>
+				</tr>
+				<tr>
+					<td>Housing Loan Interest</td>
+					<td>{{housingLoanIntellengceMsg}}</td>
+				</tr>
+				<tr>
+					<td>80'C</td>
+					<td>{{c80IntellengceMsg}}</td>
+				</tr>
+				<tr>
+					<td>Education Loan</td>
+					<td>{{educationLoanIntellengceMsg}}</td>
+				</tr>
+				<tr>
+					<td>NPS</td>
+					<td>{{npsIntellengceMsg}}</td>
+				</tr>						
+				</table>
+			</div>
+			<br>
+	<br>
+	<br>
+	<br>
+	<div align="center">
+		<button ng-click="getIncomeTax(requestParam)">Calculate Tax</button>
+		&nbsp; &nbsp; &nbsp; &nbsp;
+	</div>
+</body>
+
+</html>
