@@ -109,7 +109,7 @@ myfirstApp
 								$http(
 										{
 											method : 'POST',
-											url : "http://localhost:8080/IncometaxCalculator/services/incometax/getIncomeTaxInfo",
+											url : "https://intense-woodland-33544.herokuapp.com/services/incometax/getIncomeTaxInfo",
 											data : requestParam,
 											headers : {
 												'Content-Type' : 'application/json'
