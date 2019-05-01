@@ -74,7 +74,7 @@ public class IncomeTaxCalcController {
 		}
 		if(requestParam.getInterestRate() != null && requestParam.getInterestRate() < 200000){
 			Double balance = 200000 -requestParam.getInterestRate();
-			incomeTaxResponse.setHousingLoanIntellengceMsg("Housing Loan Max Declaration Limit is Rs 200000.Utilize Balance Amount Rs."+balance+" Under NPS Loan Declaration");
+			incomeTaxResponse.setHousingLoanIntellengceMsg("Loan Interest Max Declaration Limit is Rs 200000.Utilize Balance Amount Rs."+balance+" Under NPS Loan Declaration");
 		}
 	}
 

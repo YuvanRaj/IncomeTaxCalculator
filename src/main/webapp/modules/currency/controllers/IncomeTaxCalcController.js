@@ -21,7 +21,7 @@ myfirstApp
 									$scope.hraFixedErrorMsg = "";
 								
 								if($scope.requestParam.interestRate > $scope.requestParam.totalFixedAmt)
-									$scope.interestFixedErrorMsg = "Home Loan Interest Amount should not be greater than Total Fixed Amount";
+									$scope.interestFixedErrorMsg = "Loan Interest Amount should not be greater than Total Fixed Amount";
 								else
 									$scope.interestFixedErrorMsg = "";
 								
@@ -46,7 +46,7 @@ myfirstApp
 								
 								// Maximum Value Validation								
 								if($scope.requestParam.interestRate > 200000)
-									$scope.interestMaxErrorMsg ="Home Loan Interest Amount should not be greater than 200000";
+									$scope.interestMaxErrorMsg ="Loan Interest Amount should not be greater than 200000";
 								else
 									$scope.interestMaxErrorMsg ="";
 									
